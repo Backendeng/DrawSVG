@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "LeqUtimyuz5Cz/nUGQsmlRLyxxURrboiSgG6HifqEUF3iElsZmXsWLf5ywTU+Y4pQejkvvzr+VLwD0VcHcAHwg==",
+  "dgSpecHash": "vmntmgeOehZ0ZTo7d6hwUqCne7z3rdLZgVvlifzXObWlwO2I2ZKWRB7wMnHd5pKmoAeGjzBW+5fSwWY+33rjrw==",
   "success": true,
-  "projectFilePath": "C:\\Drip\\test\\test.csproj",
+  "projectFilePath": "C:\\Drip\\test\\DrawSVG\\test.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\excss\\4.2.3\\excss.4.2.3.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\magick.net-q16-anycpu\\13.5.0\\magick.net-q16-anycpu.13.5.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\magick.net.core\\13.5.0\\magick.net.core.13.5.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\runtime.osx.10.10-x64.corecompat.system.drawing\\5.8.64\\runtime.osx.10.10-x64.corecompat.system.drawing.5.8.64.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\svg\\3.4.6\\svg.3.4.6.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512"
   ],
   "logs": []

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Drip\\test\\test.csproj": {}
+    "C:\\Drip\\test\\DrawSVG\\test.csproj": {}
   },
   "projects": {
-    "C:\\Drip\\test\\test.csproj": {
+    "C:\\Drip\\test\\DrawSVG\\test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Drip\\test\\test.csproj",
+        "projectUniqueName": "C:\\Drip\\test\\DrawSVG\\test.csproj",
         "projectName": "test",
-        "projectPath": "C:\\Drip\\test\\test.csproj",
+        "projectPath": "C:\\Drip\\test\\DrawSVG\\test.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Drip\\test\\obj\\",
+        "outputPath": "C:\\Drip\\test\\DrawSVG\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,6 +43,10 @@
             "Magick.NET-Q16-AnyCPU": {
               "target": "Package",
               "version": "[13.5.0, )"
+            },
+            "Svg": {
+              "target": "Package",
+              "version": "[3.4.6, )"
             },
             "System.Drawing.Common": {
               "target": "Package",
