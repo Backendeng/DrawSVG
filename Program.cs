@@ -2,11 +2,13 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using Svg;
 
 class Program
 {
-    static void Main()
+    static void pp()
     {
+
         // Load the JPG file into a Bitmap object
         using (Bitmap originalBmp = (Bitmap)Image.FromFile("input.svg"))
         {
