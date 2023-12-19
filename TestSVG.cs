@@ -1,76 +1,55 @@
 ﻿using System;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
+using System.IO;
+using SkiaSharp;
+using Svg.Skia;
 
 class TestSVG
 {
     static void Main()
     {
-        // Load the JPG file into a Bitmap object
-        using (Bitmap originalBmp = (Bitmap)Image.FromFile("input.svg"))
+        // Load the existing SVG document using SkiaSharp
+        var skSvg = new SKSvg();
+        skSvg.Load("input.svg");
+
+        // Ensure that the SKSvg object has a valid picture
+        if (skSvg.Picture != null)
         {
-            // Create a new Bitmap with a non-indexed pixel format
-            Bitmap bmp = new Bitmap(originalBmp.Width, originalBmp.Height, PixelFormat.Format32bppArgb);
-
-            // Create a Graphics object for the new Bitmap
-            using (Graphics g = Graphics.FromImage(bmp))
+            // Create an SKPaint object for styling the text
+            var paint = new SKPaint
             {
-                // Draw the original image onto the new Bitmap
-                g.DrawImage(originalBmp, 0, 0, originalBmp.Width, originalBmp.Height);
+                Color = SKColors.Black,
+                TextSize = 12,
+                Typeface = SKTypeface.FromFamilyName("Arial", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright),
+            };
 
-                // Create a circular mask
-                GraphicsPath path = new GraphicsPath();
-                path.AddEllipse(20, 20, 300, 300); // Adjust the position and size as needed
-                Region region = new Region(path);
-                g.SetClip(region, CombineMode.Replace);
-
-                // Fill the ring-shaped region with a background color (white in this example)
-                FillRing(g, Brushes.White, 170, 170, 150, 100); // Adjust the inner radius as needed
-
-                // Set the Font property to the desired font
-                Font font = new Font("Arial", 30, FontStyle.Regular);
-
-                // Set the center and radius of the circle
-                float centerX = 170; // Adjust the X-coordinate of the center
-                float centerY = 170; // Adjust the Y-coordinate of the center
-                float radius = 150; // Adjust the radius
-
-                // Iterate through each letter and draw it facing towards the top
-                for (int i = 0; i < "Hello, Wor ld!".Length; i++)
+            // Create a new SKBitmap to draw the SVG on
+            using (var bitmap = new SKBitmap((int)skSvg.Picture.CullRect.Width, (int)skSvg.Picture.CullRect.Height))
+            {
+                using (var canvas = new SKCanvas(bitmap))
                 {
-                    // Calculate the position for the current letter
-                    float angle = i * (360f / "Hello, World!".Length);
-                    float x = centerX + radius * (float)Math.Cos(angle * Math.PI / 180);
-                    float y = centerY + radius * (float)Math.Sin(angle * Math.PI / 180);
+                    // Draw the SVG on the canvas
+                    canvas.DrawPicture(skSvg.Picture);
 
-                    // Calculate the rotation angle to face towards the top
-                    float rotationAngle = angle + 90;
-
-                    // Draw the new rotated text on the Bitmap
-                    g.TranslateTransform(x, y);
-                    g.RotateTransform(rotationAngle);
-                    g.DrawString("Hello, Wor ld!"[i].ToString(), font, Brushes.Black, -font.Size / 2, 0);
-                    g.ResetTransform(); // Reset the transformation for the next letter
+                    // Draw the text on the canvas
+                    canvas.DrawText("Hello, SVG!", 10, 40, paint);
                 }
 
-                // Save the modified Bitmap
-                bmp.Save("output.jpg", ImageFormat.Jpeg);
+                // Save the modified SKBitmap as an SVG file
+                using (var stream = new FileStream("modified.svg", FileMode.Create))
+                {
+                    using (var svgCanvas = SKSvgCanvas.Create(SKRect.Create(0, 0, bitmap.Width, bitmap.Height), stream))
+                    {
+                        svgCanvas.DrawPicture(skSvg.Picture);
+                        svgCanvas.DrawText("Hello, SVG!", 10, 40, paint);
+                    }
+                }
+
+                Console.WriteLine("Text added to the existing SVG file successfully.");
             }
         }
-    }
-
-    // Function to fill a ring-shaped region with a background color
-    static void FillRing(Graphics g, Brush brush, float x, float y, float outerRadius, float innerRadius)
-    {
-        RectangleF outerRect = new RectangleF(x - outerRadius, y - outerRadius, 2 * outerRadius, 2 * outerRadius);
-        RectangleF innerRect = new RectangleF(x - innerRadius, y - innerRadius, 2 * innerRadius, 2 * innerRadius);
-
-        GraphicsPath path = new GraphicsPath();
-        path.AddEllipse(outerRect);
-        path.AddEllipse(innerRect);
-
-        Region region = new Region(path);
-        g.FillRegion(brush, region);
+        else
+        {
+            Console.WriteLine("Error: Unable to load SVG file.");
+        }
     }
 }
