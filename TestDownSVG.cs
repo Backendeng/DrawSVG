@@ -3,9 +3,9 @@ using System.IO;
 using SkiaSharp;
 using Svg.Skia;
 
-class TestSVG
+class TestDownSVG
 {
-    static void Main()
+    static void Main1()
     {
         // Load the existing SVG document using SkiaSharp
         var skSvg = new SKSvg();
@@ -32,7 +32,7 @@ class TestSVG
 
                     // Add semicircular text at the top
                     var textPath = new SKPath();
-                    textPath.AddArc(new SKRect(50, 50, 150, 150), -180, 180); // Adjust the circle parameters as needed
+                    textPath.AddArc(new SKRect(50, 50, 150, 150), 0, 180); // Adjust the circle parameters as needed
 
                     canvas.DrawTextOnPath("Semicircular Text", textPath, 0, 0, paint);
                 }
@@ -46,23 +46,12 @@ class TestSVG
 
                         // Draw semicircular text on the SVG canvas at the top
                         var semicircularTextPath = new SKPath();
-                        semicircularTextPath.AddArc(new SKRect(42, 83, 217, 220), -165, 180); // Adjust the circle parameters as needed
+                        semicircularTextPath.AddArc(new SKRect(35, 100, 250, 280), 180, -180); // Adjust the circle parameters as needed
                         
                         paint.TextSize = 20;
 
-                        svgCanvas.DrawTextOnPath("MELISSA CARDINALS", semicircularTextPath, 0, 0, paint);
-
-
-                        // Draw semicircular text on the SVG canvas at the top
-                        var semicircularTextPath1 = new SKPath();
-                        semicircularTextPath1.AddArc(new SKRect(22, 100, 240, 292), 175, -180); // Adjust the circle parameters as needed
-
-                        paint.TextSize = 20;
-
                         // Adjust the offset (0, 0) based on your desired position
-                        svgCanvas.DrawTextOnPath("2023 4A D1 STATE CHAMPIONS", semicircularTextPath1, 0, 0, paint);
-
-
+                        svgCanvas.DrawTextOnPath("MELISSA CARDINALS", semicircularTextPath, 0, 0, paint);
                     }
                 }
 
