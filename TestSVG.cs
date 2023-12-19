@@ -30,8 +30,11 @@ class TestSVG
                     // Draw the SVG on the canvas
                     canvas.DrawPicture(skSvg.Picture);
 
-                    // Draw the text on the canvas
-                    canvas.DrawText("Hello, SVG!", 10, 40, paint);
+                    // Add semicircular text at the top
+                    var textPath = new SKPath();
+                    textPath.AddArc(new SKRect(50, 50, 150, 150), -180, 180); // Adjust the circle parameters as needed
+
+                    canvas.DrawTextOnPath("Semicircular Text", textPath, 0, 0, paint);
                 }
 
                 // Save the modified SKBitmap as an SVG file
@@ -40,7 +43,14 @@ class TestSVG
                     using (var svgCanvas = SKSvgCanvas.Create(SKRect.Create(0, 0, bitmap.Width, bitmap.Height), stream))
                     {
                         svgCanvas.DrawPicture(skSvg.Picture);
-                        svgCanvas.DrawText("Hello, SVG!", 10, 40, paint);
+
+                        // Draw semicircular text on the SVG canvas at the top
+                        var semicircularTextPath = new SKPath();
+                        semicircularTextPath.AddArc(new SKRect(42, 83, 217, 220), -165, 180); // Adjust the circle parameters as needed
+                        
+                        paint.TextSize = 20;
+
+                        svgCanvas.DrawTextOnPath("MELISSA CARDINALS", semicircularTextPath, 0, 0, paint);
                     }
                 }
 
