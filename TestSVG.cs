@@ -7,6 +7,16 @@ class TestSVG
 {
     static void Main()
     {
+        Console.Write("Enter your top text: ");
+        string topTxt = Console.ReadLine();
+
+        Console.WriteLine($"You entered: {topTxt}");
+
+        Console.Write("Enter your bottom text: ");
+        string bottomTxt = Console.ReadLine();
+
+        Console.WriteLine($"You entered: {bottomTxt}");
+
         // Load the existing SVG document using SkiaSharp
         var skSvg = new SKSvg();
         skSvg.Load("input.svg");
@@ -19,7 +29,7 @@ class TestSVG
             {
                 Color = SKColors.Black,
                 TextSize = 12,
-                Typeface = SKTypeface.FromFamilyName("Arial", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright),
+                Typeface = SKTypeface.FromFamilyName("Verdana", SKFontStyleWeight.Normal, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright),
             };
 
             // Create a new SKBitmap to draw the SVG on
@@ -46,21 +56,21 @@ class TestSVG
 
                         // Draw semicircular text on the SVG canvas at the top
                         var semicircularTextPath = new SKPath();
-                        semicircularTextPath.AddArc(new SKRect(42, 83, 217, 220), -165, 180); // Adjust the circle parameters as needed
+                        semicircularTextPath.AddArc(new SKRect(42, 83, 217, 220), -158, 180); // Adjust the circle parameters as needed
                         
                         paint.TextSize = 20;
 
-                        svgCanvas.DrawTextOnPath("MELISSA CARDINALS", semicircularTextPath, 0, 0, paint);
+                        svgCanvas.DrawTextOnPath(topTxt, semicircularTextPath, 0, 0, paint);
 
 
                         // Draw semicircular text on the SVG canvas at the top
                         var semicircularTextPath1 = new SKPath();
-                        semicircularTextPath1.AddArc(new SKRect(22, 100, 240, 292), 175, -180); // Adjust the circle parameters as needed
+                        semicircularTextPath1.AddArc(new SKRect(22, 100, 240, 292), 163, -180); // Adjust the circle parameters as needed
 
                         paint.TextSize = 20;
 
                         // Adjust the offset (0, 0) based on your desired position
-                        svgCanvas.DrawTextOnPath("2023 4A D1 STATE CHAMPIONS", semicircularTextPath1, 0, 0, paint);
+                        svgCanvas.DrawTextOnPath(bottomTxt, semicircularTextPath1, 0, 0, paint);
 
 
                     }
