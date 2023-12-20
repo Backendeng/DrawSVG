@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Printing;
 using System.IO;
 using SkiaSharp;
 using Svg.Skia;
@@ -56,11 +57,18 @@ class TestSVG
 
                         // Draw semicircular text on the SVG canvas at the top
                         var semicircularTextPath = new SKPath();
-                        semicircularTextPath.AddArc(new SKRect(42, 83, 217, 220), -158, 180); // Adjust the circle parameters as needed
+                        semicircularTextPath.AddArc(new SKRect(32.5f, 82.5f, 228.5f, 280), -180, 180); // Adjust the circle parameters as needed
                         
                         paint.TextSize = 20;
 
-                        svgCanvas.DrawTextOnPath(topTxt, semicircularTextPath, 0, 0, paint);
+
+                        // Calculate the width of the text
+                        float semicircularTextWidth = paint.MeasureText(topTxt);
+                        // Calculate the offset to center the text
+                        float semicircularTextOffsetX = 78 - semicircularTextWidth / 3.8f ;
+                        Console.Write(topTxt.Length);
+
+                        svgCanvas.DrawTextOnPath(topTxt, semicircularTextPath, semicircularTextOffsetX, 0, paint);
 
 
                         // Draw semicircular text on the SVG canvas at the top
