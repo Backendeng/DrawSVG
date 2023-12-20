@@ -66,19 +66,24 @@ class TestSVG
                         float semicircularTextWidth = paint.MeasureText(topTxt);
                         // Calculate the offset to center the text
                         float semicircularTextOffsetX = 78 - semicircularTextWidth / 3.8f ;
-                        Console.Write(topTxt.Length);
 
                         svgCanvas.DrawTextOnPath(topTxt, semicircularTextPath, semicircularTextOffsetX, 0, paint);
 
-
                         // Draw semicircular text on the SVG canvas at the top
                         var semicircularTextPath1 = new SKPath();
-                        semicircularTextPath1.AddArc(new SKRect(22, 100, 240, 292), 163, -180); // Adjust the circle parameters as needed
+                        semicircularTextPath1.AddArc(new SKRect(21, 80, 242, 292), 180, -180); // Adjust the circle parameters as needed
 
                         paint.TextSize = 20;
 
+                        // Calculate the width of the text
+                        semicircularTextWidth = paint.MeasureText(bottomTxt);
+
+                        // Calculate the offset to center the text
+                        semicircularTextOffsetX = 84 - semicircularTextWidth / 4.15f;
+                        Console.WriteLine(semicircularTextWidth);
+
                         // Adjust the offset (0, 0) based on your desired position
-                        svgCanvas.DrawTextOnPath(bottomTxt, semicircularTextPath1, 0, 0, paint);
+                        svgCanvas.DrawTextOnPath(bottomTxt, semicircularTextPath1, semicircularTextOffsetX, 0, paint);
 
 
                     }
