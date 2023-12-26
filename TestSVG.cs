@@ -20,12 +20,20 @@ class TestSVG
 
         // Load the existing SVG document using SkiaSharp
         var skSvg = new SKSvg();
-        skSvg.Load("input.svg");
+        skSvg.Load("input3.svg");
 
         // Ensure that the SKSvg object has a valid picture
         if (skSvg.Picture != null)
         {
             // Create an SKPaint object for styling the text
+
+            // Get the width and height from the CullRect
+            float svgWidth = skSvg.Picture.CullRect.Width;
+            float svgHeight = skSvg.Picture.CullRect.Height;
+
+            Console.WriteLine($"SVG Width: {svgWidth}");
+            Console.WriteLine($"SVG Height: {svgHeight}");
+
             var paint = new SKPaint
             {
                 Color = SKColors.Black,
